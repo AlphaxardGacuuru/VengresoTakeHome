@@ -1,0 +1,36 @@
+{
+	"name": "Div Counter",
+	"version": "1.0",
+	"manifest_version": 3,
+	"description": "Chrome extension to count divs on web pages",
+	"permissions": [
+		"activeTab",
+		"storage",
+		"scripting"
+	],
+	"action": {
+		"default_title": "My Apps",
+		"default_popup": "popup.html",
+		"default_icon": {
+			"512": "p.png"
+		}
+	},
+	"content_scripts": [
+		{
+			"js": [
+				"content.js"
+			],
+			"matches": [
+				"https://developer.chrome.com/docs/extensions/*",
+				"https://developer.chrome.com/docs/webstore/*",
+				"https://x.com/*"
+			]
+		}
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"icons": {
+		"512": "p.png"
+	}
+}
