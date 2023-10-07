@@ -6,7 +6,10 @@ function countDivs() {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.action === "getDivCount") {
 		const divCount = countDivs()
-		sendResponse({ count: divCount })
+		sendResponse({
+			url: window.location.href,
+			count: divCount,
+		})
 	}
 })
 

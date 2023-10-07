@@ -10,18 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DivCountSavedEvent
+class DivCountSavedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+	public $divCount;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($divCount)
     {
-        //
+        $this->divCount = $divCount;
     }
 
     /**
@@ -31,6 +33,6 @@ class DivCountSavedEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('div-count-saved');
     }
 }

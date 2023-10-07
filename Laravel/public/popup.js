@@ -10,21 +10,27 @@ document.addEventListener("DOMContentLoaded", function () {
 						: "Something went wrong, try reloading page"
 
 					if (response) {
-						sendDataToLaravel(response.count)
+						sendDataToLaravel(response)
 					}
 				}
 			)
 		})
 	})
 
-	function sendDataToLaravel(divCount) {
+	function sendDataToLaravel(response) {
+		// Construct POST form data
+		var data = {
+			url: response.url,
+			count: response.count,
+		}
+
 		fetch("http://localhost:8000/api/div-counts", {
 			method: "POST",
 			headers: {
 				"X-Requested-With": "XMLHttpRequest",
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ divCount: divCount }),
+			body: JSON.stringify(data),
 		})
 			.then((response) => response.json())
 			.then((data) => {

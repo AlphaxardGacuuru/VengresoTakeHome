@@ -33,7 +33,8 @@ class DivCountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "divCount" => "required",
+            "url" => "required",
+            "count" => "required",
         ]);
 
         [$saved, $message, $divCount] = $this->service->store($request);

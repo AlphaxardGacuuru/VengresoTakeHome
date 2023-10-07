@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
 import ReactDOM from "react-dom"
+import { HashRouter, Switch } from "react-router-dom"
 // import Axios from "axios"
+
+import AppLayout from "./Layouts/AppLayout"
 
 import { random } from "lodash"
 
@@ -14,6 +17,22 @@ function App() {
 		}
 	}
 
+	// Function for checking local storage
+	const getLocalStorageAuth = (state) => {
+		if (typeof window !== "undefined" && localStorage.getItem(state)) {
+			return JSON.parse(localStorage.getItem(state))
+		} else {
+			return {
+				name: "Guest",
+				avatar: "/storage/avatars/male-avatar.png",
+				accountType: "normal",
+				decos: 0,
+				posts: 0,
+				fans: 0,
+			}
+		}
+	}
+
 	// Function to set local storage
 	const setLocalStorage = (state, data) => {
 		localStorage.setItem(state, JSON.stringify(data))
@@ -24,6 +43,9 @@ function App() {
 	// Declare states
 	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
+
+	const [auth, setAuth] = useState(getLocalStorageAuth("auth"))
+	const [login, setLogin] = useState()
 
 	// Function for fetching data from API
 	const get = (endpoint, setState, storage = null, errors = true) => {
@@ -48,12 +70,34 @@ function App() {
 		setErrors(newError)
 	}
 
+	useEffect(() => {
+		get("auth", setAuth, "auth", false)
+	}, [])
+
 	console.log("rendered")
 
+	const GLOBAL_STATE = {
+		url,
+		getLocalStorage,
+		setLocalStorage,
+		messages,
+		setMessages,
+		errors,
+		setErrors,
+		get,
+		getErrors,
+		auth,
+		setAuth,
+		login,
+		setLogin,
+	}
+
 	return (
-		<React.Fragment>
-			<h1 className="w-25 mt-5 mx-auto">Vengreso Extension</h1>
-		</React.Fragment>
+		<HashRouter>
+			<AppLayout GLOBAL_STATE={GLOBAL_STATE}>
+				<h1 className="w-25 mt-5 mx-auto">Vengreso Extension</h1>
+			</AppLayout>
+		</HashRouter>
 	)
 }
 

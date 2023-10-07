@@ -3,20 +3,20 @@ import React from "react"
 const Btn = ({ btnStyle, btnClass, btnText, onClick, loading, disabled }) => (
 	<button
 		style={btnStyle}
-		className={btnClass}
+		className={`btn rounded-pill text-uppercase ${btnClass}`}
 		onClick={onClick}
 		disabled={disabled}>
 		{btnText}
 		{loading && (
 			<div
-				className="spinner-border ms-2 my-auto"
+				className="spinner-border my-auto"
 				style={{ color: "inherit" }}></div>
 		)}
 	</button>
 )
 
 Btn.defaultProps = {
-	btnClass: "sonar-btn white-btn",
+	btnClass: "btn-primary text-white",
 	loading: false,
 	disabled: false,
 }

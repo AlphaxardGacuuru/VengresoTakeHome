@@ -1,51 +1,23 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import CryptoJS from "crypto-js"
-// import Axios from "axios"
-// import { useAuth } from "@/hooks/auth";
 
 import Btn from "@/components/Core/Btn"
 
 import CloseSVG from "@/svgs/CloseSVG"
 
-import {
-	GoogleLoginButton,
-	FacebookLoginButton,
-	TwitterLoginButton,
-} from "react-social-login-buttons"
 
 const LoginPopUp = (props) => {
 	const history = useHistory()
+	const location = useLocation()
 
-	// const [name, setName] = useState('Alphaxard Gacuuru')
-	const [name, setName] = useState("Black Music")
-	// const [username, setUsername] = useState('@alphaxardG')
-	const [username, setUsername] = useState("@blackmusic")
-	// const [email, setEmail] = useState('alphaxardgacuuru47@gmail.com')
-	const [email, setEmail] = useState("al@black.co.ke")
-	// const [phone, setPhone] = useState('0700364446')
-	const [phone, setPhone] = useState("")
-	// const [password, setPassword] = useState('0700364446')
-	const [password, setPassword] = useState("0700000000")
-	const [shouldRemember, setShouldRemember] = useState()
-	const [status, setStatus] = useState()
-	const [errors, setErrors] = useState([])
+	const [email, setEmail] = useState("johndoe@gmail.com")
+	const [phone, setPhone] = useState("0700000000")
 	const [loading, setLoading] = useState(false)
-
-	const onSocial = (website) => {
-		window.location.href = `/login/${website}`
-		// Axios.get(`${props.url}/api/login/${website}`)
-		// .then((res) => console.log(res.data.data))
-		// register({ name, username, email, phone, password, password_confirmation: password, setErrors })
-		// login({ username, phone, email, password, remember: shouldRemember, setErrors, setStatus })
-	}
-
-	// const [phone, setPhone] = useState('07')
-	const [phoneLogin, setPhoneLogin] = useState(false)
-
+	
 	// Encrypt Token
 	const encryptedToken = (token) => {
-		const secretKey = "BlackMusicAuthorizationToken"
+		const secretKey = "VengresoAuthorizationToken"
 		// Encrypt
 		return CryptoJS.AES.encrypt(token, secretKey).toString()
 	}
@@ -75,23 +47,22 @@ const LoginPopUp = (props) => {
 					setTimeout(() => window.location.reload(), 1000)
 				})
 				.catch((err) => {
-					props.getErrors(err, true)
 					// Remove loader
 					setLoading(false)
+					props.getErrors(err)
 				})
 
-			setPhone("07")
+			// setPhone("07")
 		})
 	}
-	
+
+	const blur = props.auth.name == "Guest"
+
 	return (
-		<div className={props.login ? "menu-open" : ""}>
-			{/* Background Blur */}
+		<div className={blur ? "menu-open" : ""}>
 			<div
 				className="background-blur"
-				style={{ visibility: props.login ? "visible" : "hidden" }}></div>
-			{/* Background Blur End */}
-
+				style={{ visibility: blur ? "visible" : "hidden" }}></div>
 			<div className="bottomMenu">
 				<div className="d-flex align-items-center justify-content-between">
 					{/* <!-- Logo Area --> */}
@@ -104,68 +75,32 @@ const LoginPopUp = (props) => {
 						style={{ fontSize: "1em" }}
 						onClick={() => {
 							props.setLogin(false)
+							// Check location to index
 							history.push("/")
 						}}>
 						<CloseSVG />
 					</div>
 				</div>
 				<div className="p-2">
-					{phoneLogin ? (
-						<center>
-							<div className="mycontact-form">
-								<form method="POST" action="" onSubmit={onSubmit}>
-									<input
-										id="phone"
-										type="text"
-										className="my-form"
-										name="phone"
-										value={phone}
-										onChange={(e) => setPhone(e.target.value)}
-										required={true}
-										autoFocus
-									/>
-									<br />
-									<br />
-
-									<Btn
-										type="submit"
-										btnClass="mysonar-btn white-btn float-right"
-										btnText="Login"
-										loading={loading}
-									/>
-								</form>
+					<center>
+						<div className="mycontact-form">
+							<form method="POST" action="" onSubmit={onSubmit}>
+								<input
+									id="email"
+									type="text"
+									className="form-control"
+									name="email"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									required={true}
+									autoFocus
+								/>
 								<br />
 
-								<Btn
-									btnClass="mysonar-btn white-btn"
-									btnText="back"
-									onClick={() => setPhoneLogin(false)}
-								/>
-							</div>
-						</center>
-					) : (
-						<>
-							<GoogleLoginButton
-								className="mt-2 rounded-0"
-								onClick={() => onSocial("google")}
-							/>
-							{/* <FacebookLoginButton
-								className="mt-2 rounded-0"
-								onClick={() => onSocial("facebook")}
-							/> */}
-							<TwitterLoginButton
-								className="mt-2 rounded-0"
-								onClick={() => onSocial("twitter")}
-							/>
-							<br />
-
-							<Btn
-								btnClass="mysonar-btn white-btn"
-								btnText="login with number"
-								onClick={() => setPhoneLogin(true)}
-							/>
-						</>
-					)}
+								<Btn type="submit" btnText="Login" loading={loading} />
+							</form>
+						</div>
+					</center>
 				</div>
 			</div>
 		</div>

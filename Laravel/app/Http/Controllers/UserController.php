@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function show($username)
     {
-        return $this->service->show($username);
+		// 
     }
 
     /**
@@ -55,20 +55,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'string|nullable|max:20',
-            'phone' => 'string|nullable|startsWith:0|min:10|max:10',
-            'filepond-profile-pic' => 'nullable|max:9999',
-            'bio' => 'string|nullable|max:50',
-            'withdrawal' => 'string|nullable',
-        ]);
-
-        [$saved, $message, $user] = $this->service->update($request, $id);
-
-        return response([
-            "message" => $message,
-            "data" => $user,
-        ], 200);
+		// 
     }
 
     /**
@@ -91,12 +78,5 @@ class UserController extends Controller
     public function auth()
     {
         return $this->service->auth();
-    }
-
-    /*
-     * Artists */
-    public function artists()
-    {
-        return $this->service->artists();
     }
 }
