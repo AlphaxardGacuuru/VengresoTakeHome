@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ["chrome-extension://*", env('FRONTEND_URL')],
+    'allowed_origins' => ["chrome-extension://*", env('FRONTEND_URL'), env('ANGULAR_URL')],
 
     'allowed_origins_patterns' => [],
 

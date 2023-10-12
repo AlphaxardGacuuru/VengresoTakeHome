@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+	/* font-family: "Roboto", sans-serif; */
+	overflow-x: hidden;
+	max-width: 100%;
+	background-color: aliceblue;
+}
+
+a {
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	color: #232323;
+	text-decoration: none;
+	outline: none;
+	font-size: 14px;
+	font-weight: 300;
+}
+

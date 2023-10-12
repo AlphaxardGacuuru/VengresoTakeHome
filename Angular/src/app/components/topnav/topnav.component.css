@@ -1,0 +1,84 @@
+/* :: Header Area CSS */
+.header-area {
+	position: fixed;
+	z-index: 995;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	background-color: transparent;
+	padding: 0px 20px;
+	background-color: #FFFFFF;
+}
+
+.header-area .logo-area a {
+	color: #232323;
+	font-size: 28px;
+	font-weight: 100;
+}
+
+@media only screen and (max-width: 767px) {
+	.header-area .logo-area a {
+		font-size: 18px;
+	}
+}
+
+.main-logo {
+	color: #232323;
+	min-width: 200px;
+	display: block;
+	font-size: 24px;
+	min-width: 200px
+}
+
+@media only screen and (max-width: 767px) {
+	.main-logo {
+		min-width: 120px
+	}
+}
+
+.header-area .menu-content-area .header-social-area {
+	margin-right: 30px;
+}
+
+.header-area .menu-content-area .header-social-area a {
+	font-size: 18px;
+	padding: 0 10px;
+	color: #232323;
+}
+
+#menuIcon {
+	font-size: 25px;
+	color: #232323;
+}
+
+@media only screen and (max-width: 767px) {
+	.header-area .menu-content-area .header-social-area a {
+		padding: 0 5px;
+		font-size: 14px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.header-area .menu-content-area .header-social-area {
+		margin-right: 15px;
+	}
+}
+
+.header-area.sticky {
+	background-color: #FFFFFF;
+}
+
+@media only screen and (max-width: 767px) {
+	.header-area {
+		padding: 0px 0;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	#menuIcon {
+		font-size: 20px;
+	}
+}
