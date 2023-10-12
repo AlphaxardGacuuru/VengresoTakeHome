@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-vengreso'),
+      dir: require('path').join(__dirname, './coverage/Angular'),
       subdir: '.',
       reporters: [
         { type: 'html' },
