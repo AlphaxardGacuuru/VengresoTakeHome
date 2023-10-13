@@ -23,7 +23,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 // Route::middleware(['auth:sanctum'])->group(function () {
-    // Authenticated User
+	Route::get("dashboard", [DivCountController::class, "dashboard"]);
+    
+	// Authenticated User
     Route::get('auth', [UserController::class, 'auth']);
 
     Route::apiResources([
@@ -32,5 +34,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
         'users' => UserController::class
     ]);
 // });
+
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);

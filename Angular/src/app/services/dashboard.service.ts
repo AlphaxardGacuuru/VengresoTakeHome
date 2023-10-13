@@ -17,9 +17,13 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = "http://localhost:8000/api/div-counts"
+  private apiUrl = "http://localhost:8000/api"
 
-  getDivCounts(): Observable<DivCount[]> {
-	return this.http.get<DivCount[]>(this.apiUrl);
+  getDashboardData(): Observable<any> {
+	  return this.http.get(`${this.apiUrl}/dashboard`)
+  }
+
+  getDivCounts(): Observable<any> {
+	return this.http.get(`${this.apiUrl}/div-counts`)
   }
 }

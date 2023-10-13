@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\DivCount;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class DivCountSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory()
-            // ->john()
-            // ->create();
+        DivCount::factory()->count(100)->create();
     }
 }

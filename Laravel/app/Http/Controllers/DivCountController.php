@@ -81,4 +81,12 @@ class DivCountController extends Controller
     {
         //
     }
+
+	/*
+	* Show Dashboard Data
+	*/ 
+	public function dashboard()
+	{
+		return $this->service->dashboard();
+	}
 }
