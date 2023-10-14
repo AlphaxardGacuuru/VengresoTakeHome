@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
 	uniqueUrls = []
 	groupedByMonth = []
 	groupedByDivsPerUrl = []
-
+	message: string
+	
 	constructor(private dashboardService: DashboardService) {}
 
 	ngOnInit(): void {
@@ -42,5 +43,9 @@ export class DashboardComponent implements OnInit {
 		this.dashboardService
 			.getDivCounts()
 			.subscribe((res) => (this.divCounts = res.data))
+	}
+
+	setMessage(message) {
+		this.message = message
 	}
 }

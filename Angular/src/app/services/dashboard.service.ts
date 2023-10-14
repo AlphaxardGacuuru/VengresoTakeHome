@@ -1,29 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Observable } from "rxjs"
 
 import { DivCount } from "../DivCount"
 
-  const httpOptions = {
+const httpOptions = {
 	headers: new HttpHeaders({
-		"Content-Type": "application/json"
-	})
-  }
+		"Content-Type": "application/json",
+	}),
+}
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
 export class DashboardService {
+	constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+	private apiUrl = "http://localhost:8000"
 
-  private apiUrl = "http://localhost:8000/api"
+	onLogin(formData): Observable<any> {
+		return this.http.post(`${this.apiUrl}/login`, formData, httpOptions)
+	}
 
-  getDashboardData(): Observable<any> {
-	  return this.http.get(`${this.apiUrl}/dashboard`)
-  }
+	getDashboardData(): Observable<any> {
+		return this.http.get(`${this.apiUrl}/api/dashboard`)
+	}
 
-  getDivCounts(): Observable<any> {
-	return this.http.get(`${this.apiUrl}/div-counts`)
-  }
+	getDivCounts(): Observable<any> {
+		return this.http.get(`${this.apiUrl}/api/div-counts`)
+	}
 }

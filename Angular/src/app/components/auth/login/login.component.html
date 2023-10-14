@@ -1,0 +1,59 @@
+<div class="menu-open"
+	 *ngIf="isNotLoggedIn()">
+	<div class="background-blur"></div>
+	<div *ngIf="isNotLoggedIn()"
+		 class="bottomMenu">
+		<div class="d-flex align-items-center justify-content-between">
+			<!-- {/* Logo Area */} -->
+			<div class="logo-area p-2">
+				<a href="#">Login</a>
+			</div>
+			<!-- {/* Close Icon */} -->
+			<div class="closeIcon float-end">
+				<svg xmlns="http://www.w3.org/2000/svg"
+					 width="1em"
+					 height="1em"
+					 fill="currentColor"
+					 class="bi bi-x"
+					 view-box="0 0 16 16">
+					<path
+						  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+				</svg>
+			</div>
+		</div>
+		<div class="p-2">
+			<form (ngSubmit)="onSubmit()">
+				<input id="email"
+					   type="text"
+					   class="form-control"
+					   name="email"
+					   placeholder="Email"
+					   value="john@gmail.com"
+					   [(ngModel)]="email"
+					   required="true"
+					   autoFocus />
+				<br />
+
+				<input id="password"
+					   type="password"
+					   class="form-control"
+					   name="password"
+					   placeholder="Password"
+					   value="john@gmail.com"
+					   [(ngModel)]="password"
+					   required="true"
+					   autoFocus />
+				<br />
+
+				<button type="submit"
+						class="btn btn-primary rounded-pill">
+					Login
+				</button>
+				<button *ngIf="!isNotLoggedIn()"
+						class="btn btn-success rounded-pill">
+					Logged In Successfully
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

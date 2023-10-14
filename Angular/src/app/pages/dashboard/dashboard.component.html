@@ -2,22 +2,27 @@
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10">
 
+		<!-- Message -->
+		<div *ngIf="message" class="w-50 mx-auto text-center text-muted bg-success-subtle rounded-pill p-3">{{ message }}</div>
+		<!-- Message End -->
+
+
 		<!-- Charts -->
 		<div class="container py-5">
 			<div class="row">
-				<div class="col-4">
+				<div class="col-sm-4">
 					<app-doughnut *ngIf="uniqueUrls.length > 0"
 								  title="Unique Urls"
 								  [labels]="['Urls']"
 								  [data]="uniqueUrls"></app-doughnut>
 				</div>
-				<div class="col-4">
+				<div class="col-sm-4">
 					<app-line *ngIf="groupedByDivsPerUrl.length > 0"
 							  title="Divs per Url"
 							  [labels]="groupedByDivsPerUrl[0]"
 							  [data]="groupedByDivsPerUrl[1]"></app-line>
 				</div>
-				<div class="col-4">
+				<div class="col-sm-4">
 					<app-bar *ngIf="groupedByMonth.length > 0"
 							 title="Entries per Month"
 							 [labels]="groupedByMonth[0]"
@@ -53,3 +58,5 @@
 	</div>
 	<div class="col-sm-1"></div>
 </div>
+
+<app-login (onMessage)="setMessage($event)"></app-login>
