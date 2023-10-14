@@ -29,14 +29,6 @@ export class DashboardComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		// Handle Chrome Extension message
-
-		// Listen for messages
-		chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-			console.log(message)
-			// Handle the message here
-		})
-
 		// Get Dashboard Data
 		this.dashboardService.getDashboardData().subscribe((res) => {
 			this.uniqueUrls.push(res.uniqueUrls)
@@ -61,6 +53,14 @@ export class DashboardComponent implements OnInit {
 
 		// Get Div Counts
 		this.getDivCounts()
+
+		// Handle Chrome Extension message
+
+		// Listen for messages
+		// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+			// console.log(message)
+			// Handle the message here
+		// })
 	}
 
 	setMessage(message) {
