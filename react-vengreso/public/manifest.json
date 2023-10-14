@@ -1,25 +1,34 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"name": "Div Counter",
+	"version": "1.0",
+	"manifest_version": 3,
+	"description": "Chrome extension to count divs on web pages",
+	"permissions": [
+		"activeTab",
+		"storage",
+		"scripting"
+	],
+	"action": {
+		"default_title": "My Apps",
+		"default_popup": "index.html",
+		"default_icon": {
+			"512": "logo512.png"
+		}
+	},
+	"content_scripts": [
+		{
+			"js": [
+				"content.js"
+			],
+			"matches": [
+				"https://developer.chrome.com/docs/extensions/*",
+				"https://developer.chrome.com/docs/webstore/*",
+				"https://x.com/*"
+			]
+		}
+	],
+	"icons": {
+			"192": "logo192.png",
+			"512": "logo512.png"
+	}
 }

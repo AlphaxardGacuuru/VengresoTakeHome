@@ -1,8 +1,8 @@
+///<reference types="chrome"/>
 import { Component, OnInit, NgZone } from "@angular/core"
 import { DivCount } from "../../DivCount"
 import { DashboardService } from "../../services/dashboard.service"
-import echo from "../../lib/echo"
-import Pusher from "pusher-js"
+import Echo from "../../lib/echo"
 
 @Component({
 	selector: "app-dashboard",
@@ -16,8 +16,11 @@ export class DashboardComponent implements OnInit {
 	groupedByDivsPerUrl = []
 	message: string
 
-	constructor(private dashboardService: DashboardService, private ngZone: NgZone) {
-		echo.private("div-count-saved").listen("DivCountSavedEvent", (data) => {
+	constructor(
+		private dashboardService: DashboardService,
+		private ngZone: NgZone
+	) {
+		Echo.private("div-count-saved").listen("DivCountSavedEvent", (data) => {
 			console.log("Received data:", data)
 			this.ngZone.run(() => {
 				this.getDivCounts()
@@ -26,6 +29,14 @@ export class DashboardComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		// Handle Chrome Extension message
+
+		// Listen for messages
+		chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+			console.log(message)
+			// Handle the message here
+		})
+
 		// Get Dashboard Data
 		this.dashboardService.getDashboardData().subscribe((res) => {
 			this.uniqueUrls.push(res.uniqueUrls)
