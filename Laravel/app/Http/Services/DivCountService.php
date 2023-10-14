@@ -13,7 +13,7 @@ class DivCountService extends Service
      * Fetch All Div Counts*/
     public function index()
     {
-        $getDivCounts = DivCount::paginate();
+        $getDivCounts = DivCount::orderBy("id", "DESC")->paginate();
 
         $divCounts = DivCountResource::collection($getDivCounts);
 
@@ -26,7 +26,7 @@ class DivCountService extends Service
     {
         $divCount = new DivCount;
         $divCount->url = $request->url;
-        $divCount->count = $request->coiunt;
+        $divCount->count = $request->count;
         $saved = $divCount->save();
         $message = "Div count saved";
 

@@ -2,5 +2,5 @@ export interface DivCount {
 	id?: number;
 	url: string;
 	count: string;
-	createdAt: boolean;
+	createdAt: string;
 }

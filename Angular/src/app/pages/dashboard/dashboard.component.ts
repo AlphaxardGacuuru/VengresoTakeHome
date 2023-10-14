@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, NgZone } from "@angular/core"
 import { DivCount } from "../../DivCount"
 import { DashboardService } from "../../services/dashboard.service"
+import echo from "../../lib/echo"
+import Pusher from "pusher-js"
 
 @Component({
 	selector: "app-dashboard",
@@ -13,8 +15,15 @@ export class DashboardComponent implements OnInit {
 	groupedByMonth = []
 	groupedByDivsPerUrl = []
 	message: string
-	
-	constructor(private dashboardService: DashboardService) {}
+
+	constructor(private dashboardService: DashboardService, private ngZone: NgZone) {
+		echo.private("div-count-saved").listen("DivCountSavedEvent", (data) => {
+			console.log("Received data:", data)
+			this.ngZone.run(() => {
+				this.getDivCounts()
+			})
+		})
+	}
 
 	ngOnInit(): void {
 		// Get Dashboard Data
@@ -40,12 +49,16 @@ export class DashboardComponent implements OnInit {
 		})
 
 		// Get Div Counts
-		this.dashboardService
-			.getDivCounts()
-			.subscribe((res) => (this.divCounts = res.data))
+		this.getDivCounts()
 	}
 
 	setMessage(message) {
 		this.message = message
+	}
+
+	getDivCounts() {
+		this.dashboardService
+			.getDivCounts()
+			.subscribe((res) => (this.divCounts = res.data))
 	}
 }

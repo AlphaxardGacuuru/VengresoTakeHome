@@ -3,7 +3,8 @@
 	<div class="col-sm-10">
 
 		<!-- Message -->
-		<div *ngIf="message" class="w-50 mx-auto text-center text-muted bg-success-subtle rounded-pill p-3">{{ message }}</div>
+		<div *ngIf="message"
+			 class="w-50 mx-auto text-center text-muted bg-success-subtle rounded-pill p-3">{{ message }}</div>
 		<!-- Message End -->
 
 
@@ -35,25 +36,27 @@
 		<h1 class="text-center mb-5">Div Data Collected</h1>
 
 		<!-- Table -->
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>URL</th>
-					<th>Divs</th>
-					<th>Date Collected</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let divCount of divCounts; index as key">
-					<td>{{ key + 1 }}</td>
-					<td><a href="{{ divCount.url }}"
-						   target="_blank">{{ divCount.url }}</a></td>
-					<td>{{ divCount.count }}</td>
-					<td>{{ divCount.createdAt }}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>URL</th>
+						<th>Divs</th>
+						<th>Date Collected</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let divCount of divCounts; index as key">
+						<td>{{ key + 1 }}</td>
+						<td><a href="{{ divCount.url }}"
+							   target="_blank">{{ divCount.url }}</a></td>
+						<td>{{ divCount.count }}</td>
+						<td>{{ divCount.createdAt }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<!-- Table End -->
 	</div>
 	<div class="col-sm-1"></div>
