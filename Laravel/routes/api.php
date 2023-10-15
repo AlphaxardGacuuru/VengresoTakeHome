@@ -22,18 +22,17 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware(['auth:sanctum'])->group(function () {
-	Route::get("dashboard", [DivCountController::class, "dashboard"]);
-    
-	// Authenticated User
-    Route::get('auth', [UserController::class, 'auth']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get("dashboard", [DivCountController::class, "dashboard"]);
+});
 
-    Route::apiResources([
-        'div-counts' => DivCountController::class,
-        'notifications' => NotificationController::class,
-        'users' => UserController::class
-    ]);
-// });
+// Authenticated User
+Route::get('auth', [UserController::class, 'auth']);
 
+Route::apiResources([
+    'div-counts' => DivCountController::class,
+    'notifications' => NotificationController::class,
+    'users' => UserController::class,
+]);
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);

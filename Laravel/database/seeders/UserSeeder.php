@@ -14,8 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory()
-            // ->john()
-            // ->create();
+        $johnDoesntExist = User::where("email", "johndoe@gmail.com")
+            ->doesntExist();
+
+        $johnDoesntExist && User::factory()->john()->create();
     }
 }

@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
 			this.onMessage.emit(res.message)
 			// Save token to local storage
 			sessionStorage.setItem("sanctumToken", JSON.stringify(res.data))
+			// Reload page for Websocket Connection
+			setTimeout(() => window.location.reload(), 500)
 		})
 	}
 }

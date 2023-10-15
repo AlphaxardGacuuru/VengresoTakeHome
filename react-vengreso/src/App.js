@@ -42,7 +42,9 @@ function App() {
 
 	return (
 		<React.Fragment>
-			<div className="d-flex justify-content-center m-2">
+			<div
+				className="d-flex justify-content-center m-2"
+				style={{ minWidth: "20em" }}>
 				<button
 					id="divCount"
 					className="btn btn-lg btn-primary rounded-pill"
@@ -50,10 +52,14 @@ function App() {
 					Count Divs
 				</button>
 			</div>
-			<div className="d-flex justify-content-center m-2">
-				<div className="bg-success-subtle">{message}</div>
-				<div className="bg-danger-subtle">{error}</div>
-			</div>
+			{message || error ? <div className="d-flex flex-column justify-content-center w-50 mx-auto">
+				<div className="bg-success-subtle rounded-pill p-2 text-center text-muted m-1">
+					{message}
+				</div>
+				<div className="bg-danger-subtle rounded-pill p-2 text-center text-muted m-1">
+					{error}
+				</div>
+			</div> : ""}
 		</React.Fragment>
 	)
 }

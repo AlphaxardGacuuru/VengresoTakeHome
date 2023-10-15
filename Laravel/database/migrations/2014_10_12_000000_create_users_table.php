@@ -16,21 +16,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('gender')->nullable();
-            $table->string('account_type')->default('normal')->nullable();
             $table->string('avatar')->default('profile-pics/male_avatar.png')->nullable();
-            $table->string('backdrop')->default('img/headphones.jpg')->nullable();
-            $table->string('bio')->nullable();
-            $table->string('dob')->nullable();
-            $table->string('location')->nullable();
-            $table->string('withdrawal')->nullable();
-            $table->integer('decos')->default(0)->nullable();
             $table->timestamps();
         });
     }
