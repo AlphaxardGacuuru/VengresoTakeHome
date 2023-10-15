@@ -52,14 +52,20 @@ function App() {
 					Count Divs
 				</button>
 			</div>
-			{message || error ? <div className="d-flex flex-column justify-content-center w-50 mx-auto">
+			<div
+				className={`d-flex flex-column justify-content-center w-50 mx-auto ${
+					message && "d-none"
+				}`}>
 				<div className="bg-success-subtle rounded-pill p-2 text-center text-muted m-1">
 					{message}
 				</div>
-				<div className="bg-danger-subtle rounded-pill p-2 text-center text-muted m-1">
+				<div
+					className={`bg-danger-subtle rounded-pill p-2 text-center text-muted m-1  ${
+						error && "d-none"
+					}`}>
 					{error}
 				</div>
-			</div> : ""}
+			</div>
 		</React.Fragment>
 	)
 }
