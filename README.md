@@ -39,7 +39,7 @@ The websocket will run on localhost:6001
 - •	ng serve
 ```
 Should run on localhost:4200.
-A login popup will appear with prefilled login credential (Email and Password - johndoe@gmail.com), login is per tab session, the moment the tab is closed the session ends.
+A login popup will appear with prefilled login credential (Email and Password - johndoe@gmail.com), login is per tab session, the moment the tab is closed the session ends. Login is need for Websocket Authentication, the app uses websockets to enable realtime data relay.
 
 ## Extension installation
 The build folder contains the chrome extension, simply extract it, go to chrome extensions with developer mode set, then click on load unpacked and select the build folder.
